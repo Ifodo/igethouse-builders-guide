@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IgetHouse – Smart Home Building Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-100 text-gray-800 min-h-screen flex flex-col font-inter antialiased">
+  <!-- Animated Background Blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <header class="relative bg-white/80 backdrop-blur-xl border-b border-gray-200/50 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center gap-6 py-4">
+        <div class="flex items-center gap-3 flex-shrink-0">
+          <div class="bg-gradient-to-br from-[#025940] to-[#034d38] p-2.5 rounded-xl shadow-lg shadow-[#025940]/30">
+            <i data-lucide="home" class="w-6 h-6 text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-[#025940] to-[#03a678] bg-clip-text text-transparent">IgetHouse</h1>
+            <p class="text-xs text-gray-500 font-medium">Smart Building Guide</p>
+          </div>
+        </div>
+        
+        <!-- Search in Header -->
+        <div class="flex-1 max-w-xl">
+          <div class="relative">
+            <input type="text" id="searchInput" placeholder="Search keywords..." class="w-full pl-11 pr-4 py-2.5 border-2 border-gray-200 rounded-xl bg-white/90 backdrop-blur-sm font-medium text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-[#025940] focus:shadow-lg focus:shadow-[#025940]/10 transition-all" />
+            <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+          </div>
+        </div>
+
+        <button id="visitBtn" class="group bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-6 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 flex-shrink-0">
+          Visit Website
+          <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col gap-8">
+      <!-- Control Panel Row -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-in">
+        <!-- Preferences Card -->
+        <div class="glass-card rounded-2xl p-6 space-y-5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-gradient-to-br from-[#025940] to-[#03a678] p-2 rounded-lg">
+              <i data-lucide="sliders" class="w-5 h-5 text-white"></i>
+            </div>
+            <h2 class="text-lg font-bold text-gray-800">Preferences</h2>
+          </div>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">House Type</label>
+              <div class="relative">
+                <select id="houseType" class="modern-select">
+                  <option value="">Select House Type</option>
+                  <option>Bungalow</option>
+                  <option>Duplex</option>
+                  <option>Terrace</option>
+                  <option>Apartment</option>
+                  <option>Custom</option>
+                </select>
+                <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">Build Style</label>
+              <div class="relative">
+                <select id="styleType" class="modern-select">
+                  <option value="">Select Style</option>
+                  <option>Basic</option>
+                  <option>Standard</option>
+                  <option>Premium</option>
+                </select>
+                <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+              </div>
+            </div>
+
+            <button id="generateGuide" class="modern-btn-primary group">
+              <span>Generate Guide</span>
+              <i data-lucide="sparkles" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Checklist Card -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-gradient-to-br from-[#FFA726] to-[#ff8f00] p-2 rounded-lg">
+              <i data-lucide="list-checks" class="w-5 h-5 text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800">Checklist</h3>
+          </div>
+          <p class="text-sm text-gray-600 mb-4">Track your building tasks and milestones</p>
+          <button id="todoBtn" class="modern-btn-success group">
+            <span>Open Checklist</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </div>
+
+        <!-- Progress Card -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-gradient-to-br from-[#FFA726] to-[#ff8f00] p-2 rounded-lg">
+              <i data-lucide="activity" class="w-5 h-5 text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800">Progress</h3>
+          </div>
+          <div class="flex items-center justify-center py-2">
+            <canvas id="progressChart" class="max-w-[180px]"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guide Display -->
+      <section id="guideSection" class="hidden animate-slide-in" style="animation-delay: 0.2s">
+        <div class="glass-card rounded-2xl p-8 min-h-[600px]" id="guideContainer">
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Start Journey Modal -->
+  <div id="journeyModal" class="modal-overlay hidden">
+    <div class="modal-content max-w-xl">
+      <div class="text-center">
+        <div class="bg-gradient-to-br from-[#025940]/10 to-[#03a678]/20 p-6 rounded-full mb-6 inline-block animate-bounce-slow">
+          <i data-lucide="rocket" class="w-20 h-20 text-[#025940]"></i>
+        </div>
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Start Your Building Journey!</h2>
+        <p class="text-gray-600 text-lg mb-8">Your comprehensive guide is ready. Let's build your dream home together!</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="text-center">
+            <div class="text-3xl font-bold text-[#025940] mb-1" id="journeyHouseType"></div>
+            <div class="text-sm text-gray-500">House Type</div>
+          </div>
+          <div class="text-center">
+            <div class="text-3xl font-bold text-[#FFA726] mb-1" id="journeyStyle"></div>
+            <div class="text-sm text-gray-500">Build Style</div>
+          </div>
+        </div>
+        
+        <button id="startJourneyBtn" class="w-full bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-bold text-lg px-8 py-4 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3">
+          <span>Let's Begin!</span>
+          <i data-lucide="arrow-right" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checklist Modal -->
+  <div id="todoModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="bg-gradient-to-br from-[#FFA726] to-[#ff8f00] p-2 rounded-lg">
+            <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800">Project Checklist</h2>
+        </div>
+        <button id="closeModal" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+        </button>
+      </div>
+      
+      <div class="max-h-96 overflow-y-auto mb-6 pr-2 custom-scrollbar">
+        <ul id="todoList" class="space-y-3"></ul>
+      </div>
+      
+      <div class="flex gap-3 pt-4 border-t">
+        <button id="saveProgress" class="flex-1 bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 flex items-center justify-center gap-2">
+          <i data-lucide="save" class="w-5 h-5"></i>
+          <span>Save Progress</span>
+        </button>
+        <button id="resetProgress" class="flex-1 bg-gradient-to-r from-[#5E6666] to-[#4a5050] text-white font-semibold px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 flex items-center justify-center gap-2">
+          <i data-lucide="refresh-ccw" class="w-5 h-5"></i>
+          <span>Reset All</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="relative mt-auto py-8 bg-white/50 backdrop-blur-lg border-t border-gray-200/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-gray-600 font-medium mb-2">© 2025 IgetHouse.ng – Smart Building Guide Application</p>
+        <p class="text-sm text-gray-400">Empowering your construction journey with intelligent guidance</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // initialize icons
+    lucide.createIcons();
+
+    // Dynamically load Chart.js safely before use
+    function loadChartJs(callback) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+      script.onload = callback;
+      document.head.appendChild(script);
+    }
+
+    function initApp() {
+      const visitBtn = document.getElementById('visitBtn');
+      const generateGuide = document.getElementById('generateGuide');
+      const guideContainer = document.getElementById('guideContainer');
+      const todoBtn = document.getElementById('todoBtn');
+      const todoModal = document.getElementById('todoModal');
+      const closeModal = document.getElementById('closeModal');
+      const todoList = document.getElementById('todoList');
+
+      visitBtn.onclick = () => window.open('https://www.igethouse.ng/', '_blank');
+
+      const comprehensiveGuide = {
+        preconstruction: {
+          title: 'Pre-Construction Phase',
+          timeline: '2-4 months',
+          description: 'Foundation planning and legal preparations for your building project',
+          steps: [
+            {
+              title: 'Land Acquisition and Title Verification',
+              description: 'Purchase land and verify legal ownership through proper documentation',
+              details: [
+                'Conduct land search at the Land Registry',
+                'Verify Certificate of Occupancy (C of O) or Governor\'s Consent',
+                'Engage a legal practitioner for title verification',
+                'Complete purchase agreement and payment',
+                'Obtain survey plan of the property'
+              ],
+              duration: '2-4 weeks',
+              cost: 'Land price + 5-10% legal fees'
+            },
+            {
+              title: 'Site Survey and Geotechnical Investigation',
+              description: 'Professional assessment of land conditions and soil analysis',
+              details: [
+                'Hire licensed surveyors for accurate site measurements',
+                'Conduct soil test to determine foundation requirements',
+                'Identify boundary marks and site levels',
+                'Obtain survey report and CAD drawings',
+                'Check for flood zones and drainage patterns'
+              ],
+              duration: '1-2 weeks',
+              cost: '₦150,000 - ₦400,000'
+            },
+            {
+              title: 'Architectural Design and Planning',
+              description: 'Professional building design tailored to your needs',
+              details: [
+                'Engage a registered architect (ARCON certified)',
+                'Discuss design requirements and preferences',
+                'Review floor plans, elevations, and 3D renders',
+                'Make necessary design revisions',
+                'Obtain final architectural drawings'
+              ],
+              duration: '3-6 weeks',
+              cost: '5-8% of estimated building cost'
+            },
+            {
+              title: 'Structural and MEP Drawings',
+              description: 'Technical engineering designs for building systems',
+              details: [
+                'Structural engineer designs foundation and framework',
+                'Electrical engineer plans power distribution',
+                'Mechanical engineer designs HVAC systems',
+                'Plumbing engineer plans water and sewage systems',
+                'Obtain comprehensive engineering drawings'
+              ],
+              duration: '2-4 weeks',
+              cost: '₦500,000 - ₦2,000,000'
+            },
+            {
+              title: 'Building Plan Approval',
+              description: 'Obtain necessary permits from government authorities',
+              details: [
+                'Submit building plans to Local Planning Authority',
+                'Pay development levy and processing fees',
+                'Obtain Environmental Impact Assessment (if required)',
+                'Get Building Permit approval',
+                'Receive approved stamped drawings'
+              ],
+              duration: '4-8 weeks',
+              cost: '₦200,000 - ₦800,000'
+            },
+            {
+              title: 'Project Budget and Cost Estimation',
+              description: 'Detailed financial planning and material costing',
+              details: [
+                'Engage a quantity surveyor for Bill of Quantities',
+                'Get quotations from material suppliers',
+                'Estimate labor costs',
+                'Add 15-20% contingency budget',
+                'Secure construction financing if needed'
+              ],
+              duration: '1-2 weeks',
+              cost: 'QS fees: 2-4% of project cost'
+            }
+          ]
+        },
+        construction: {
+          title: 'Construction Phase',
+          timeline: '6-12 months',
+          description: 'Actual building process from foundation to finishing',
+          steps: [
+            {
+              title: 'Site Preparation and Clearing',
+              description: 'Prepare the construction site for building work',
+              details: [
+                'Clear vegetation and debris from site',
+                'Set up site office and storage facilities',
+                'Install temporary fencing and security',
+                'Establish water and power supply',
+                'Set out building lines and foundation marks'
+              ],
+              duration: '1-2 weeks',
+              cost: '₦300,000 - ₦600,000'
+            },
+            {
+              title: 'Foundation Construction',
+              description: 'Build strong foundation based on soil test results',
+              details: [
+                'Excavate foundation trenches as per drawings',
+                'Pour lean concrete (blinding) for foundation base',
+                'Install reinforcement bars (rebar) as specified',
+                'Pour foundation concrete (usually 1:2:4 mix)',
+                'Allow proper curing for 21-28 days',
+                'Backfill and compact earth around foundation'
+              ],
+              duration: '3-5 weeks',
+              cost: '15-20% of total building cost'
+            },
+            {
+              title: 'Block Work and Structural Frame',
+              description: 'Construct walls and structural columns',
+              details: [
+                'Lay concrete blocks or bricks for walls',
+                'Build structural columns with reinforcement',
+                'Install ring beams at lintel level',
+                'Construct staircases (for multi-story buildings)',
+                'Ensure proper wall ties and bonding',
+                'Install door and window frames'
+              ],
+              duration: '6-10 weeks',
+              cost: '25-30% of total building cost'
+            },
+            {
+              title: 'Roofing Installation',
+              description: 'Complete roof structure and covering',
+              details: [
+                'Install roof trusses or concrete slabs',
+                'Apply waterproofing membrane',
+                'Install roofing sheets (aluminum, stone-coated, etc.)',
+                'Fix gutters and downpipes',
+                'Install roof accessories (ridge caps, fascia boards)',
+                'Ensure proper roof ventilation'
+              ],
+              duration: '3-5 weeks',
+              cost: '12-15% of total building cost'
+            },
+            {
+              title: 'Electrical Installation',
+              description: 'Complete electrical wiring and fixtures',
+              details: [
+                'Install electrical conduits in walls',
+                'Wire circuits according to electrical drawings',
+                'Install distribution boards and circuit breakers',
+                'Position sockets, switches, and light fixtures',
+                'Test all electrical installations',
+                'Obtain electrical inspection certificate'
+              ],
+              duration: '2-4 weeks',
+              cost: '₦800,000 - ₦2,500,000'
+            },
+            {
+              title: 'Plumbing Installation',
+              description: 'Install water supply and drainage systems',
+              details: [
+                'Install underground drainage pipes',
+                'Set up septic tank or sewer connection',
+                'Install water supply pipes (PVC or PPR)',
+                'Connect toilets, sinks, and bathroom fixtures',
+                'Install water storage tanks',
+                'Test for leaks and proper drainage'
+              ],
+              duration: '2-3 weeks',
+              cost: '₦600,000 - ₦1,800,000'
+            },
+            {
+              title: 'Windows and Doors Installation',
+              description: 'Install windows, doors, and security features',
+              details: [
+                'Install aluminum or wooden windows',
+                'Fit external and internal doors',
+                'Install security doors and burglary proof',
+                'Apply glazing to windows',
+                'Install door locks and handles',
+                'Seal window and door frames'
+              ],
+              duration: '2-3 weeks',
+              cost: '₦800,000 - ₦2,000,000'
+            },
+            {
+              title: 'Plastering and Rendering',
+              description: 'Apply plaster finish to walls and ceilings',
+              details: [
+                'Apply cement render to external walls',
+                'Plaster internal walls and ceilings',
+                'Install ceiling boards (POP or gypsum)',
+                'Create decorative ceiling designs if required',
+                'Apply skim coat for smooth finish',
+                'Allow proper drying time'
+              ],
+              duration: '3-5 weeks',
+              cost: '₦1,200,000 - ₦2,500,000'
+            },
+            {
+              title: 'Floor Finishing',
+              description: 'Complete floor treatments and tiling',
+              details: [
+                'Apply floor screed and leveling',
+                'Install floor tiles or other finishes',
+                'Apply skirting boards',
+                'Polish and seal floors as needed',
+                'Install specialized flooring (hardwood, vinyl, etc.)',
+                'Clean and protect finished floors'
+              ],
+              duration: '2-4 weeks',
+              cost: '₦800,000 - ₦2,500,000'
+            },
+            {
+              title: 'Painting and Decoration',
+              description: 'Apply paint and finishing touches',
+              details: [
+                'Fill cracks and imperfections',
+                'Apply primer coat to walls',
+                'Paint external walls (weather-resistant paint)',
+                'Paint internal walls (emulsion or washable paint)',
+                'Apply decorative finishes',
+                'Paint doors, windows, and trim'
+              ],
+              duration: '2-3 weeks',
+              cost: '₦600,000 - ₦1,500,000'
+            }
+          ]
+        },
+        postconstruction: {
+          title: 'Post-Construction Phase',
+          timeline: '1-2 months',
+          description: 'Final inspections, certification, and property handover',
+          steps: [
+            {
+              title: 'Building Inspection and Testing',
+              description: 'Professional inspection of all building systems',
+              details: [
+                'Conduct structural integrity inspection',
+                'Test electrical systems and safety features',
+                'Check plumbing for leaks and proper flow',
+                'Inspect roofing for water-tightness',
+                'Test all doors, windows, and fixtures',
+                'Identify and rectify any defects'
+              ],
+              duration: '1 week',
+              cost: '₦200,000 - ₦500,000'
+            },
+            {
+              title: 'Regulatory Approvals and Certificates',
+              description: 'Obtain necessary certificates from authorities',
+              details: [
+                'Apply for Certificate of Fitness for Habitation',
+                'Get Fire Safety Certificate',
+                'Obtain Environmental Health Certificate',
+                'Secure Building Completion Certificate',
+                'Update property documents with additions'
+              ],
+              duration: '3-6 weeks',
+              cost: '₦300,000 - ₦800,000'
+            },
+            {
+              title: 'External Works and Landscaping',
+              description: 'Complete compound development and beautification',
+              details: [
+                'Construct compound walls and gates',
+                'Install interlocking stones or pavement',
+                'Plant grass, trees, and flowers',
+                'Install outdoor lighting',
+                'Build perimeter fence if required',
+                'Create drainage channels and soak-away'
+              ],
+              duration: '2-4 weeks',
+              cost: '₦800,000 - ₦3,000,000'
+            },
+            {
+              title: 'Interior Furnishing',
+              description: 'Fit out the interior spaces',
+              details: [
+                'Install kitchen cabinets and countertops',
+                'Fit wardrobes and storage units',
+                'Install air conditioning units',
+                'Set up home automation systems (if applicable)',
+                'Install curtain rails and blinds',
+                'Add furniture and appliances'
+              ],
+              duration: '2-3 weeks',
+              cost: 'Based on preferences'
+            },
+            {
+              title: 'Final Handover and Documentation',
+              description: 'Complete property transfer and documentation',
+              details: [
+                'Conduct final walkthrough with owner',
+                'Provide operation manuals for all systems',
+                'Hand over all keys and access cards',
+                'Transfer warranties and guarantees',
+                'Provide as-built drawings',
+                'Deliver maintenance schedule and guidelines'
+              ],
+              duration: '3-5 days',
+              cost: 'No additional cost'
+            },
+            {
+              title: 'Maintenance Planning',
+              description: 'Establish maintenance schedule for property longevity',
+              details: [
+                'Create maintenance checklist',
+                'Schedule regular inspections (quarterly/annually)',
+                'Plan for preventive maintenance',
+                'Identify reliable contractors for repairs',
+                'Set up maintenance budget',
+                'Keep records of all maintenance activities'
+              ],
+              duration: 'Ongoing',
+              cost: '5-10% of property value annually'
+            }
+          ]
+        }
+      };
+
+      let chart;
+
+      function getAllTasks() {
+        const tasks = [];
+        Object.values(comprehensiveGuide).forEach(phase => {
+          phase.steps.forEach(step => {
+            tasks.push(step.title);
+          });
+        });
+        return tasks;
+      }
+
+      function updateTodoList() {
+        todoList.innerHTML = '';
+        getAllTasks().forEach(task => {
+          const li = document.createElement('li');
+          const checked = localStorage.getItem(task) ? 'checked' : '';
+          li.innerHTML = `
+            <label class='flex items-center gap-3 p-3 bg-gray-50 hover:bg-[#025940]/5 rounded-xl cursor-pointer transition-all group'>
+              <input type='checkbox' class='task w-5 h-5 rounded border-2 border-gray-300 text-[#025940] focus:ring-2 focus:ring-[#025940]/50 cursor-pointer' data-task='${task}' ${checked}/>
+              <span class='flex-1 text-gray-700 group-hover:text-gray-900 ${checked ? 'line-through opacity-50' : ''}'>${task}</span>
+            </label>
+          `;
+          todoList.appendChild(li);
+        });
+        lucide.createIcons();
+      }
+
+      function updateChart() {
+        if (!chart) return;
+        const total = getAllTasks().length;
+        const completed = Object.keys(localStorage).length;
+        chart.data.datasets[0].data = [completed, Math.max(total - completed, 0)];
+        chart.update();
+      }
+
+      function initChart() {
+        const ctx = document.getElementById('progressChart').getContext('2d');
+        chart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Completed', 'Remaining'],
+            datasets: [{ data: [0, 1], backgroundColor: ['#025940', '#e5e7eb'] }]
+          },
+          options: { cutout: '75%', plugins: { legend: { display: false } } }
+        });
+        updateChart();
+      }
+
+      // Store selected options for modal
+      let selectedType, selectedStyle;
+
+      generateGuide.addEventListener('click', () => {
+        const type = document.getElementById('houseType').value;
+        const style = document.getElementById('styleType').value;
+        
+        if (!type || !style) {
+          const alertDiv = document.createElement('div');
+          alertDiv.className = 'fixed top-24 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-slide-down';
+          alertDiv.innerHTML = '<div class="flex items-center gap-2"><i data-lucide="alert-circle" class="w-5 h-5"></i><span>Please select both house type and style</span></div>';
+          document.body.appendChild(alertDiv);
+          lucide.createIcons();
+          setTimeout(() => alertDiv.remove(), 3000);
+          return;
+        }
+
+        // Store selections
+        selectedType = type;
+        selectedStyle = style;
+
+        // Show journey modal
+        const journeyModal = document.getElementById('journeyModal');
+        document.getElementById('journeyHouseType').textContent = type;
+        document.getElementById('journeyStyle').textContent = style;
+        journeyModal.classList.remove('hidden');
+        lucide.createIcons();
+      });
+
+      // Function to display comprehensive guide
+      function displayComprehensiveGuide() {
+        // Show the guide section
+        document.getElementById('guideSection').classList.remove('hidden');
+        
+        guideContainer.innerHTML = `
+          <div class="mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-[#025940] to-[#03a678] p-3 rounded-xl">
+                  <i data-lucide="building-2" class="w-8 h-8 text-white"></i>
+                </div>
+                <div>
+                  <h2 class='text-3xl font-bold text-gray-800'>${selectedType} Building Guide</h2>
+                  <p class='text-gray-500 text-sm mt-1'>${selectedStyle} Construction Plan</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <span class="px-3 py-1 bg-[#025940]/10 text-[#025940] rounded-lg text-sm font-semibold">${selectedType}</span>
+                <span class="px-3 py-1 bg-[#FFA726]/10 text-[#FFA726] rounded-lg text-sm font-semibold">${selectedStyle}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        const stageIcons = {
+          preconstruction: 'clipboard-list',
+          construction: 'hard-hat',
+          postconstruction: 'check-square'
+        };
+        
+        const stageColors = {
+          preconstruction: 'from-[#025940] to-[#03a678]',
+          construction: 'from-[#FFA726] to-[#ff8f00]',
+          postconstruction: 'from-[#5E6666] to-[#4a5050]'
+        };
+
+        for (let [stageKey, phase] of Object.entries(comprehensiveGuide)) {
+          const section = document.createElement('div');
+          section.className = 'mb-8 animate-fade-in';
+          
+          section.innerHTML = `
+            <div class="bg-gradient-to-r ${stageColors[stageKey]} p-5 rounded-t-2xl">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="${stageIcons[stageKey]}" class="w-7 h-7 text-white"></i>
+                  <div>
+                    <h3 class='text-2xl font-bold text-white'>${phase.title}</h3>
+                    <p class="text-white/80 text-sm mt-1">${phase.description}</p>
+                  </div>
+                </div>
+                <div class="bg-white/20 px-4 py-2 rounded-lg">
+                  <p class="text-white font-semibold text-sm"><i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>${phase.timeline}</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white border-2 border-gray-100 rounded-b-2xl p-6">
+              <div class='space-y-6'>
+                ${phase.steps.map((step, i) => `
+                  <div class='border-l-4 border-${stageColors[stageKey].includes('025940') ? '[#025940]' : stageColors[stageKey].includes('FFA726') ? '[#FFA726]' : '[#5E6666]'} pl-6 py-2'>
+                    <div class="flex items-start gap-4 mb-3">
+                      <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br ${stageColors[stageKey]} text-white rounded-full flex items-center justify-center font-bold">
+                        ${i + 1}
+                      </div>
+                      <div class="flex-1">
+                        <h4 class="text-lg font-bold text-gray-800 mb-2">${step.title}</h4>
+                        <p class="text-gray-600 text-sm mb-3">${step.description}</p>
+                        <div class="flex gap-4 text-xs text-gray-500 mb-3">
+                          <span class="flex items-center gap-1">
+                            <i data-lucide="timer" class="w-3.5 h-3.5"></i>
+                            <strong>Duration:</strong> ${step.duration}
+                          </span>
+                          <span class="flex items-center gap-1">
+                            <i data-lucide="wallet" class="w-3.5 h-3.5"></i>
+                            <strong>Cost:</strong> ${step.cost}
+                          </span>
+                        </div>
+                        <div class="bg-gray-50 rounded-lg p-4">
+                          <p class="text-xs font-semibold text-gray-700 mb-2 flex items-center gap-1">
+                            <i data-lucide="list" class="w-3.5 h-3.5"></i>
+                            Detailed Steps:
+                          </p>
+                          <ul class="space-y-1.5">
+                            ${step.details.map(detail => `
+                              <li class="text-sm text-gray-600 flex items-start gap-2">
+                                <i data-lucide="check" class="w-4 h-4 text-[#025940] flex-shrink-0 mt-0.5"></i>
+                                <span>${detail}</span>
+                              </li>
+                            `).join('')}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          guideContainer.appendChild(section);
+        }
+        
+        lucide.createIcons();
+        updateTodoList();
+        updateChart();
+
+        // Scroll to guide
+        guideContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Start journey button handler
+      document.getElementById('startJourneyBtn').addEventListener('click', () => {
+        document.getElementById('journeyModal').classList.add('hidden');
+        displayComprehensiveGuide();
+      });
+
+      todoBtn.onclick = () => todoModal.classList.remove('hidden');
+      closeModal.onclick = () => todoModal.classList.add('hidden');
+
+      todoList.addEventListener('change', e => {
+        if (e.target.classList && e.target.classList.contains('task')) {
+          const key = e.target.dataset.task;
+          if (e.target.checked) localStorage.setItem(key, 'done');
+          else localStorage.removeItem(key);
+          updateChart();
+        }
+      });
+
+      document.getElementById('resetProgress').onclick = () => {
+        localStorage.clear();
+        updateTodoList();
+        updateChart();
+      };
+
+      document.getElementById('searchInput').addEventListener('input', e => {
+        const query = e.target.value.toLowerCase().trim();
+        guideContainer.querySelectorAll('li').forEach(li => {
+          li.style.display = li.textContent.toLowerCase().includes(query) ? '' : 'none';
+        });
+      });
+
+      updateTodoList();
+      initChart();
+    }
+
+    // Load Chart.js then run app
+    loadChartJs(initApp);
+  </script>
+
+  <style>
+    /* Font Family */
+    * {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animated Background Blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .blob-1 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, #025940 0%, #03a678 100%);
+      top: -10%;
+      left: -10%;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, #FFA726 0%, #ff8f00 100%);
+      bottom: -10%;
+      right: -10%;
+      animation-delay: 7s;
+    }
+
+    .blob-3 {
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, #5E6666 0%, #4a5050 100%);
+      top: 50%;
+      left: 50%;
+      animation-delay: 14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+
+    /* Glass Card Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px 0 rgba(31, 38, 135, 0.15);
+    }
+
+    /* Modern Select Dropdown */
+    .modern-select {
+      width: 100%;
+      padding: 0.75rem 2.5rem 0.75rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      background: white;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .modern-select:hover {
+      border-color: #03a678;
+      background: #f0fdf9;
+    }
+
+    .modern-select:focus {
+      outline: none;
+      border-color: #025940;
+      box-shadow: 0 0 0 3px rgba(2, 89, 64, 0.1);
+    }
+
+    /* Modern Input */
+    .modern-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 0.75rem;
+      background: white;
+      font-size: 0.95rem;
+      color: #374151;
+      transition: all 0.3s ease;
+    }
+
+    .modern-input:hover {
+      border-color: #03a678;
+      background: #f0fdf9;
+    }
+
+    .modern-input:focus {
+      outline: none;
+      border-color: #025940;
+      box-shadow: 0 0 0 3px rgba(2, 89, 64, 0.1);
+    }
+
+    .modern-input::placeholder {
+      color: #9ca3af;
+    }
+
+    /* Modern Buttons */
+    .modern-btn-primary {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, #025940 0%, #03a678 100%);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(2, 89, 64, 0.3);
+    }
+
+    .modern-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(2, 89, 64, 0.4);
+    }
+
+    .modern-btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .modern-btn-success {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, #FFA726 0%, #ff8f00 100%);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 12px rgba(255, 167, 38, 0.3);
+    }
+
+    .modern-btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 167, 38, 0.4);
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-overlay:not(.hidden) {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 600px;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay:not(.hidden) .modal-content {
+      transform: scale(1);
+    }
+
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Animations */
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-slide-in {
+      animation: slideIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .animate-slide-down {
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .animate-bounce-slow {
+      animation: bounceSlow 3s ease-in-out infinite;
+    }
+
+    @keyframes bounceSlow {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .blob {
+        filter: blur(60px);
+      }
+      
+      header .flex {
+        flex-wrap: wrap;
+      }
+      
+      header .flex-1 {
+        order: 3;
+        flex-basis: 100%;
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .blob {
+        display: none;
+      }
+      
+      header h1 {
+        font-size: 1.25rem;
+      }
+      
+      header button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</body>
+</html>
