@@ -395,31 +395,49 @@
 
   <!-- Checklist Modal -->
   <div id="todoModal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-3">
-          <div class="bg-gradient-to-br from-[#FFA726] to-[#ff8f00] p-2 rounded-lg">
-            <i data-lucide="check-circle" class="w-6 h-6 text-white"></i>
+    <div class="modal-content checklist-modal">
+      <div class="flex items-center justify-between mb-4 sm:mb-6 gap-3">
+        <div class="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+          <div class="bg-gradient-to-br from-[#FFA726] to-[#ff8f00] p-1.5 sm:p-2 rounded-lg flex-shrink-0">
+            <i data-lucide="check-circle" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
           </div>
-          <h2 class="text-2xl font-bold text-gray-800">Project Checklist</h2>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 truncate">Project Checklist</h2>
         </div>
-        <button id="closeModal" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-          <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+        <button id="closeModal" class="p-2 hover:bg-gray-100 active:bg-gray-200 rounded-lg transition-colors flex-shrink-0 touch-manipulation">
+          <i data-lucide="x" class="w-5 h-5 sm:w-6 sm:h-6 text-gray-500"></i>
         </button>
       </div>
       
-      <div class="max-h-96 overflow-y-auto mb-6 pr-2 custom-scrollbar">
-        <ul id="todoList" class="space-y-3"></ul>
+      <!-- Progress Summary -->
+      <div class="mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-[#025940]/5 to-[#03a678]/5 rounded-xl border border-[#025940]/10">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-[#025940] animate-pulse"></div>
+            <span class="text-sm font-semibold text-gray-700">Progress</span>
+          </div>
+          <div class="flex items-center gap-3 text-sm">
+            <span class="text-gray-600">
+              <span id="checklistCompleted" class="font-bold text-[#025940]">0</span> / <span id="checklistTotal" class="font-semibold text-gray-800">0</span>
+            </span>
+            <div class="w-16 sm:w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+              <div id="checklistProgressBar" class="h-full bg-gradient-to-r from-[#025940] to-[#03a678] transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
       </div>
       
-      <div class="flex gap-3 pt-4 border-t">
-        <button id="saveProgress" class="flex-1 bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 flex items-center justify-center gap-2">
-          <i data-lucide="save" class="w-5 h-5"></i>
-          <span>Save Progress</span>
+      <div class="checklist-scroll-container mb-4 sm:mb-6">
+        <ul id="todoList" class="space-y-2 sm:space-y-3"></ul>
+      </div>
+      
+      <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-4 border-t">
+        <button id="saveProgress" class="flex-1 bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-4 py-3 sm:py-3 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation min-h-[48px]">
+          <i data-lucide="save" class="w-5 h-5 flex-shrink-0"></i>
+          <span class="text-sm sm:text-base">Save Progress</span>
         </button>
-        <button id="resetProgress" class="flex-1 bg-gradient-to-r from-[#5E6666] to-[#4a5050] text-white font-semibold px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-gray-400 transition-all duration-300 flex items-center justify-center gap-2">
-          <i data-lucide="refresh-ccw" class="w-5 h-5"></i>
-          <span>Reset All</span>
+        <button id="resetProgress" class="flex-1 bg-gradient-to-r from-[#5E6666] to-[#4a5050] text-white font-semibold px-4 py-3 sm:py-3 rounded-xl hover:shadow-lg hover:shadow-gray-400 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 touch-manipulation min-h-[48px]">
+          <i data-lucide="refresh-ccw" class="w-5 h-5 flex-shrink-0"></i>
+          <span class="text-sm sm:text-base">Reset All</span>
         </button>
       </div>
     </div>
@@ -827,17 +845,33 @@
 
       function updateTodoList() {
         todoList.innerHTML = '';
-        getAllTasks().forEach(task => {
+        const tasks = getAllTasks();
+        const total = tasks.length;
+        let completed = 0;
+        
+        tasks.forEach(task => {
           const li = document.createElement('li');
           const checked = localStorage.getItem(task) ? 'checked' : '';
+          if (checked) completed++;
           li.innerHTML = `
-            <label class='flex items-center gap-3 p-3 bg-gray-50 hover:bg-[#025940]/5 rounded-xl cursor-pointer transition-all group'>
-              <input type='checkbox' class='task w-5 h-5 rounded border-2 border-gray-300 text-[#025940] focus:ring-2 focus:ring-[#025940]/50 cursor-pointer' data-task='${task}' ${checked}/>
-              <span class='flex-1 text-gray-700 group-hover:text-gray-900 ${checked ? 'line-through opacity-50' : ''}'>${task}</span>
+            <label class='flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-gray-50 hover:bg-[#025940]/5 active:bg-[#025940]/10 rounded-xl cursor-pointer transition-all group touch-manipulation'>
+              <input type='checkbox' class='task w-5 h-5 sm:w-6 sm:h-6 mt-0.5 rounded border-2 border-gray-300 text-[#025940] focus:ring-2 focus:ring-[#025940]/50 cursor-pointer flex-shrink-0' data-task='${task}' ${checked}/>
+              <span class='flex-1 text-sm sm:text-base text-gray-700 group-hover:text-gray-900 ${checked ? 'line-through opacity-60' : ''} leading-relaxed'>${task}</span>
             </label>
           `;
           todoList.appendChild(li);
         });
+        
+        // Update progress summary
+        const completedEl = document.getElementById('checklistCompleted');
+        const totalEl = document.getElementById('checklistTotal');
+        const progressBar = document.getElementById('checklistProgressBar');
+        const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+        
+        if (completedEl) completedEl.textContent = completed;
+        if (totalEl) totalEl.textContent = total;
+        if (progressBar) progressBar.style.width = percentage + '%';
+        
         lucide.createIcons();
       }
 
@@ -1512,6 +1546,15 @@
           if (e.target.checked) localStorage.setItem(key, 'done');
           else localStorage.removeItem(key);
           updateChart();
+          // Update progress summary in modal
+          const tasks = getAllTasks();
+          const total = tasks.length;
+          const completed = tasks.filter(t => localStorage.getItem(t)).length;
+          const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+          const completedEl = document.getElementById('checklistCompleted');
+          const progressBar = document.getElementById('checklistProgressBar');
+          if (completedEl) completedEl.textContent = completed;
+          if (progressBar) progressBar.style.width = percentage + '%';
         }
       });
 
@@ -2014,6 +2057,15 @@
       max-height: calc(100vh - 2rem); /* viewport-constrained */
       overflow-y: auto; /* scroll inside modal when needed */
     }
+    
+    @media (max-width: 640px) {
+      .modal-content {
+        width: 95%;
+        padding: 1.25rem;
+        border-radius: 1rem;
+        max-height: calc(100vh - 1rem);
+      }
+    }
 
     .modal-overlay:not(.hidden) .modal-content {
       transform: scale(1);
@@ -2072,23 +2124,68 @@
       }
     }
 
-    /* Custom Scrollbar */
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 8px;
+    /* Checklist Modal Specific Styles */
+    .checklist-modal {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 2rem);
+    }
+    
+    .checklist-scroll-container {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100vh - 400px);
+      min-height: 200px;
+      padding-right: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    @media (max-width: 640px) {
+      .checklist-scroll-container {
+        max-height: calc(100vh - 350px);
+        min-height: 150px;
+      }
+      .checklist-modal {
+        max-height: calc(100vh - 1rem);
+        padding: 1rem;
+      }
+    }
+    
+    /* Touch-friendly interactions */
+    .touch-manipulation {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-track {
+    /* Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar,
+    .checklist-scroll-container::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track,
+    .checklist-scroll-container::-webkit-scrollbar-track {
       background: #f1f5f9;
       border-radius: 10px;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb {
+    .custom-scrollbar::-webkit-scrollbar-thumb,
+    .checklist-scroll-container::-webkit-scrollbar-thumb {
       background: #cbd5e1;
       border-radius: 10px;
     }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+    .checklist-scroll-container::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
+    }
+    
+    @media (max-width: 640px) {
+      .custom-scrollbar::-webkit-scrollbar,
+      .checklist-scroll-container::-webkit-scrollbar {
+        width: 4px;
+      }
     }
 
     /* Animations */
