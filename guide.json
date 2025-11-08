@@ -1,0 +1,324 @@
+{
+  "preconstruction": {
+    "title": "Pre-Construction Phase",
+    "timeline": "2-4 months",
+    "description": "Foundation planning and legal preparations for your building project",
+    "steps": [
+      {
+        "title": "Land Acquisition and Title Verification",
+        "description": "Purchase land and verify legal ownership through proper documentation",
+        "details": [
+          "Conduct land search at the Land Registry",
+          "Verify Certificate of Occupancy (C of O) or Governor's Consent",
+          "Engage a legal practitioner for title verification",
+          "Complete purchase agreement and payment",
+          "Obtain survey plan of the property"
+        ],
+        "duration": "2-4 weeks",
+        "cost": "Land price + 5-10% legal fees"
+      },
+      {
+        "title": "Site Survey and Geotechnical Investigation",
+        "description": "Professional assessment of land conditions and soil analysis",
+        "details": [
+          "Hire licensed surveyors for accurate site measurements",
+          "Conduct soil test to determine foundation requirements",
+          "Identify boundary marks and site levels",
+          "Obtain survey report and CAD drawings",
+          "Check for flood zones and drainage patterns"
+        ],
+        "duration": "1-2 weeks",
+        "cost": "₦150,000 - ₦400,000"
+      },
+      {
+        "title": "Architectural Design and Planning",
+        "description": "Professional building design tailored to your needs",
+        "details": [
+          "Engage a registered architect (ARCON certified)",
+          "Discuss design requirements and preferences",
+          "Review floor plans, elevations, and 3D renders",
+          "Make necessary design revisions",
+          "Obtain final architectural drawings"
+        ],
+        "duration": "3-6 weeks",
+        "cost": "5-8% of estimated building cost"
+      },
+      {
+        "title": "Structural and MEP Drawings",
+        "description": "Technical engineering designs for building systems",
+        "details": [
+          "Structural engineer designs foundation and framework",
+          "Electrical engineer plans power distribution",
+          "Mechanical engineer designs HVAC systems",
+          "Plumbing engineer plans water and sewage systems",
+          "Obtain comprehensive engineering drawings"
+        ],
+        "duration": "2-4 weeks",
+        "cost": "₦500,000 - ₦2,000,000"
+      },
+      {
+        "title": "Building Plan Approval",
+        "description": "Obtain necessary permits from government authorities",
+        "details": [
+          "Submit building plans to Local Planning Authority",
+          "Pay development levy and processing fees",
+          "Obtain Environmental Impact Assessment (if required)",
+          "Get Building Permit approval",
+          "Receive approved stamped drawings"
+        ],
+        "duration": "4-8 weeks",
+        "cost": "₦200,000 - ₦800,000"
+      },
+      {
+        "title": "Project Budget and Cost Estimation",
+        "description": "Detailed financial planning and material costing",
+        "details": [
+          "Engage a quantity surveyor for Bill of Quantities",
+          "Get quotations from material suppliers",
+          "Estimate labor costs",
+          "Add 15-20% contingency budget",
+          "Secure construction financing if needed"
+        ],
+        "duration": "1-2 weeks",
+        "cost": "QS fees: 2-4% of project cost"
+      }
+    ]
+  },
+  "construction": {
+    "title": "Construction Phase",
+    "timeline": "6-12 months",
+    "description": "Actual building process from foundation to finishing",
+    "steps": [
+      {
+        "title": "Site Preparation and Clearing",
+        "description": "Prepare the construction site for building work",
+        "details": [
+          "Clear vegetation and debris from site",
+          "Set up site office and storage facilities",
+          "Install temporary fencing and security",
+          "Establish water and power supply",
+          "Set out building lines and foundation marks"
+        ],
+        "duration": "1-2 weeks",
+        "cost": "₦300,000 - ₦600,000"
+      },
+      {
+        "title": "Foundation Construction",
+        "description": "Build strong foundation based on soil test results",
+        "details": [
+          "Excavate foundation trenches as per drawings",
+          "Pour lean concrete (blinding) for foundation base",
+          "Install reinforcement bars (rebar) as specified",
+          "Pour foundation concrete (usually 1:2:4 mix)",
+          "Allow proper curing for 21-28 days",
+          "Backfill and compact earth around foundation"
+        ],
+        "duration": "3-5 weeks",
+        "cost": "15-20% of total building cost"
+      },
+      {
+        "title": "Block Work and Structural Frame",
+        "description": "Construct walls and structural columns",
+        "details": [
+          "Lay concrete blocks or bricks for walls",
+          "Build structural columns with reinforcement",
+          "Install ring beams at lintel level",
+          "Construct staircases (for multi-story buildings)",
+          "Ensure proper wall ties and bonding",
+          "Install door and window frames"
+        ],
+        "duration": "6-10 weeks",
+        "cost": "25-30% of total building cost"
+      },
+      {
+        "title": "Roofing Installation",
+        "description": "Complete roof structure and covering",
+        "details": [
+          "Install roof trusses or concrete slabs",
+          "Apply waterproofing membrane",
+          "Install roofing sheets (aluminum, stone-coated, etc.)",
+          "Fix gutters and downpipes",
+          "Install roof accessories (ridge caps, fascia boards)",
+          "Ensure proper roof ventilation"
+        ],
+        "duration": "3-5 weeks",
+        "cost": "12-15% of total building cost"
+      },
+      {
+        "title": "Electrical Installation",
+        "description": "Complete electrical wiring and fixtures",
+        "details": [
+          "Install electrical conduits in walls",
+          "Wire circuits according to electrical drawings",
+          "Install distribution boards and circuit breakers",
+          "Position sockets, switches, and light fixtures",
+          "Test all electrical installations",
+          "Obtain electrical inspection certificate"
+        ],
+        "duration": "2-4 weeks",
+        "cost": "₦800,000 - ₦2,500,000"
+      },
+      {
+        "title": "Plumbing Installation",
+        "description": "Install water supply and drainage systems",
+        "details": [
+          "Install underground drainage pipes",
+          "Set up septic tank or sewer connection",
+          "Install water supply pipes (PVC or PPR)",
+          "Connect toilets, sinks, and bathroom fixtures",
+          "Install water storage tanks",
+          "Test for leaks and proper drainage"
+        ],
+        "duration": "2-3 weeks",
+        "cost": "₦600,000 - ₦1,800,000"
+      },
+      {
+        "title": "Windows and Doors Installation",
+        "description": "Install windows, doors, and security features",
+        "details": [
+          "Install aluminum or wooden windows",
+          "Fit external and internal doors",
+          "Install security doors and burglary proof",
+          "Apply glazing to windows",
+          "Install door locks and handles",
+          "Seal window and door frames"
+        ],
+        "duration": "2-3 weeks",
+        "cost": "₦800,000 - ₦2,000,000"
+      },
+      {
+        "title": "Plastering and Rendering",
+        "description": "Apply plaster finish to walls and ceilings",
+        "details": [
+          "Apply cement render to external walls",
+          "Plaster internal walls and ceilings",
+          "Install ceiling boards (POP or gypsum)",
+          "Create decorative ceiling designs if required",
+          "Apply skim coat for smooth finish",
+          "Allow proper drying time"
+        ],
+        "duration": "3-5 weeks",
+        "cost": "₦1,200,000 - ₦2,500,000"
+      },
+      {
+        "title": "Floor Finishing",
+        "description": "Complete floor treatments and tiling",
+        "details": [
+          "Apply floor screed and leveling",
+          "Install floor tiles or other finishes",
+          "Apply skirting boards",
+          "Polish and seal floors as needed",
+          "Install specialized flooring (hardwood, vinyl, etc.)",
+          "Clean and protect finished floors"
+        ],
+        "duration": "2-4 weeks",
+        "cost": "₦800,000 - ₦2,500,000"
+      },
+      {
+        "title": "Painting and Decoration",
+        "description": "Apply paint and finishing touches",
+        "details": [
+          "Fill cracks and imperfections",
+          "Apply primer coat to walls",
+          "Paint external walls (weather-resistant paint)",
+          "Paint internal walls (emulsion or washable paint)",
+          "Apply decorative finishes",
+          "Paint doors, windows, and trim"
+        ],
+        "duration": "2-3 weeks",
+        "cost": "₦600,000 - ₦1,500,000"
+      }
+    ]
+  },
+  "postconstruction": {
+    "title": "Post-Construction Phase",
+    "timeline": "1-2 months",
+    "description": "Final inspections, certification, and property handover",
+    "steps": [
+      {
+        "title": "Building Inspection and Testing",
+        "description": "Professional inspection of all building systems",
+        "details": [
+          "Conduct structural integrity inspection",
+          "Test electrical systems and safety features",
+          "Check plumbing for leaks and proper flow",
+          "Inspect roofing for water-tightness",
+          "Test all doors, windows, and fixtures",
+          "Identify and rectify any defects"
+        ],
+        "duration": "1 week",
+        "cost": "₦200,000 - ₦500,000"
+      },
+      {
+        "title": "Regulatory Approvals and Certificates",
+        "description": "Obtain necessary certificates from authorities",
+        "details": [
+          "Apply for Certificate of Fitness for Habitation",
+          "Get Fire Safety Certificate",
+          "Obtain Environmental Health Certificate",
+          "Secure Building Completion Certificate",
+          "Update property documents with additions"
+        ],
+        "duration": "3-6 weeks",
+        "cost": "₦300,000 - ₦800,000"
+      },
+      {
+        "title": "External Works and Landscaping",
+        "description": "Complete compound development and beautification",
+        "details": [
+          "Construct compound walls and gates",
+          "Install interlocking stones or pavement",
+          "Plant grass, trees, and flowers",
+          "Install outdoor lighting",
+          "Build perimeter fence if required",
+          "Create drainage channels and soak-away"
+        ],
+        "duration": "2-4 weeks",
+        "cost": "₦800,000 - ₦3,000,000"
+      },
+      {
+        "title": "Interior Furnishing",
+        "description": "Fit out the interior spaces",
+        "details": [
+          "Install kitchen cabinets and countertops",
+          "Fit wardrobes and storage units",
+          "Install air conditioning units",
+          "Set up home automation systems (if applicable)",
+          "Install curtain rails and blinds",
+          "Add furniture and appliances"
+        ],
+        "duration": "2-3 weeks",
+        "cost": "Based on preferences"
+      },
+      {
+        "title": "Final Handover and Documentation",
+        "description": "Complete property transfer and documentation",
+        "details": [
+          "Conduct final walkthrough with owner",
+          "Provide operation manuals for all systems",
+          "Hand over all keys and access cards",
+          "Transfer warranties and guarantees",
+          "Provide as-built drawings",
+          "Deliver maintenance schedule and guidelines"
+        ],
+        "duration": "3-5 days",
+        "cost": "No additional cost"
+      },
+      {
+        "title": "Maintenance Planning",
+        "description": "Establish maintenance schedule for property longevity",
+        "details": [
+          "Create maintenance checklist",
+          "Schedule regular inspections (quarterly/annually)",
+          "Plan for preventive maintenance",
+          "Identify reliable contractors for repairs",
+          "Set up maintenance budget",
+          "Keep records of all maintenance activities"
+        ],
+        "duration": "Ongoing",
+        "cost": "5-10% of property value annually"
+      }
+    ]
+  }
+}
+

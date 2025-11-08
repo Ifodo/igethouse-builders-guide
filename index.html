@@ -39,10 +39,24 @@
           </div>
         </div>
 
-        <button id="visitBtn" class="group bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-6 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 flex-shrink-0">
+        <div class="flex items-center gap-2">
+          <button id="exportHeaderBtn" class="hidden md:inline-flex group bg-white text-[#025940] border-2 border-[#025940]/20 font-semibold px-4 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/10 transition-all duration-300 transform hover:scale-105 items-center gap-2">
+            Save as PDF
+            <i data-lucide="download" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+          </button>
+          <button id="saveProjectBtn" class="hidden md:inline-flex group bg-white text-[#025940] border-2 border-[#025940]/20 font-semibold px-4 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/10 transition-all duration-300 transform hover:scale-105 items-center gap-2">
+            Save
+            <i data-lucide="save" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+          </button>
+          <button id="loadProjectBtn" class="hidden md:inline-flex group bg-white text-[#025940] border-2 border-[#025940]/20 font-semibold px-4 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/10 transition-all duration-300 transform hover:scale-105 items-center gap-2">
+            Load
+            <i data-lucide="folder-open" class="w-4 h-4 group-hover:translate-y-0.5 transition-transform"></i>
+          </button>
+          <button id="visitBtn" class="group bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-6 py-2.5 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 flex-shrink-0">
           Visit Website
           <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"></i>
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   </header>
@@ -50,7 +64,7 @@
   <main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="flex flex-col gap-8">
       <!-- Control Panel Row -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-slide-in">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 animate-slide-in">
         <!-- Preferences Card -->
         <div class="glass-card rounded-2xl p-6 space-y-5">
           <div class="flex items-center gap-3 mb-4">
@@ -89,9 +103,36 @@
               </div>
             </div>
 
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">State</label>
+              <div class="relative">
+                <select id="stateSelect" class="modern-select">
+                  <option value="">Select State</option>
+                  <option value="Lagos">Lagos</option>
+                  <option value="Abuja">Abuja (FCT)</option>
+                  <option value="Rivers">Rivers</option>
+                  <option value="Ogun">Ogun</option>
+                  <option value="Oyo">Oyo</option>
+                  <option value="Edo">Edo</option>
+                  <option value="Delta">Delta</option>
+                  <option value="Anambra">Anambra</option>
+                  <option value="Enugu">Enugu</option>
+                  <option value="Kano">Kano</option>
+                  <option value="Kaduna">Kaduna</option>
+                  <option value="Other">Other</option>
+                </select>
+                <i data-lucide="chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+              </div>
+            </div>
+
             <button id="generateGuide" class="modern-btn-primary group">
               <span>Generate Guide</span>
               <i data-lucide="sparkles" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+            </button>
+
+            <button id="openWizard" class="w-full py-2.5 border-2 border-[#025940]/20 text-[#025940] rounded-xl font-semibold hover:bg-[#025940]/5 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="settings-2" class="w-5 h-5"></i>
+              Project Wizard
             </button>
           </div>
         </div>
@@ -145,6 +186,53 @@
             </div>
           </div>
         </div>
+
+        <!-- Materials Calculator Card -->
+        <div class="glass-card rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="bg-gradient-to-br from-[#025940] to-[#03a678] p-2 rounded-lg">
+              <i data-lucide="calculator" class="w-5 h-5 text-white"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800">Materials Calculator</h3>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="col-span-2">
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Wall Length (m)</label>
+              <input id="mcWallLen" type="number" min="0" step="0.1" class="modern-input" placeholder="e.g. 60" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Wall Height (m)</label>
+              <input id="mcWallHt" type="number" min="0" step="0.1" class="modern-input" placeholder="e.g. 3" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Block Type</label>
+              <select id="mcBlockType" class="modern-select">
+                <option value="9">9-inch</option>
+                <option value="6">6-inch</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Block Price (₦/unit)</label>
+              <input id="mcBlockPrice" type="number" min="0" step="50" class="modern-input" placeholder="e.g. 500" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">Cement Bag Price (₦)</label>
+              <input id="mcCementPrice" type="number" min="0" step="100" class="modern-input" placeholder="e.g. 6000" />
+            </div>
+          </div>
+          <div class="mt-3 flex gap-2">
+            <button id="mcCalcBtn" class="flex-1 modern-btn-success group">
+              <span>Calculate</span>
+              <i data-lucide="equal" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div class="mt-4 text-sm text-gray-700 space-y-1">
+            <div><strong>Blocks:</strong> <span id="mcBlocks">0</span></div>
+            <div><strong>Cement (bags):</strong> <span id="mcCementBags">0</span></div>
+            <div class="pt-1 border-t"><strong>Total Cost:</strong> <span id="mcTotalCost">₦0</span></div>
+            <p class="text-xs text-gray-500">Assumptions: 9-inch ≈ 1 bag / 70 blocks, 6-inch ≈ 1 bag / 90 blocks.</p>
+          </div>
+        </div>
       </div>
 
       <!-- Guide Display -->
@@ -155,34 +243,155 @@
     </div>
   </main>
 
-  <!-- Start Journey Modal -->
+  <!-- Start Journey / Estimate Modal -->
   <div id="journeyModal" class="modal-overlay hidden">
     <div class="modal-content max-w-xl">
       <div class="text-center">
         <div class="bg-gradient-to-br from-[#025940]/10 to-[#03a678]/20 p-6 rounded-full mb-6 inline-block animate-bounce-slow">
           <i data-lucide="rocket" class="w-20 h-20 text-[#025940]"></i>
         </div>
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">Start Your Building Journey!</h2>
-        <p class="text-gray-600 text-lg mb-8">Your comprehensive guide is ready. Let's build your dream home together!</p>
+        <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-4">Estimate Your Project</h2>
+        <p class="text-gray-600 text-base md:text-lg mb-6">Review a comprehensive cost estimate before generating your tailored guide.</p>
         
-        <div class="grid grid-cols-2 gap-4 mb-8">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
           <div class="text-center">
-            <div class="text-3xl font-bold text-[#025940] mb-1" id="journeyHouseType"></div>
+            <div class="text-xl md:text-2xl font-bold text-[#025940] mb-1 break-words" id="journeyHouseType"></div>
             <div class="text-sm text-gray-500">House Type</div>
           </div>
           <div class="text-center">
-            <div class="text-3xl font-bold text-[#FFA726] mb-1" id="journeyStyle"></div>
+            <div class="text-xl md:text-2xl font-bold text-[#FFA726] mb-1 break-words" id="journeyStyle"></div>
             <div class="text-sm text-gray-500">Build Style</div>
           </div>
+          <div class="text-center">
+            <div class="text-xl md:text-2xl font-bold text-[#5E6666] mb-1 break-words" id="journeyState"></div>
+            <div class="text-sm text-gray-500">State</div>
+          </div>
         </div>
-        
+
+        <div class="text-left bg-gray-50 rounded-xl p-4 mb-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-1">Optional Budget (₦) for better estimate</label>
+              <input id="estimateBudgetInput" type="number" min="0" step="100000" class="modern-input" placeholder="e.g. 50000000" />
+            </div>
+            <button id="recalcEstimateBtn" class="modern-btn-success group">
+              <span>Recalculate</span>
+              <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+            </button>
+          </div>
+          <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <div class="text-xs text-gray-500 font-semibold mb-1">Estimated Total</div>
+              <div id="estimateTotal" class="text-lg font-bold text-gray-800">—</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-500 font-semibold mb-1">Unknown Items</div>
+              <div id="estimateUnknown" class="text-lg font-semibold text-gray-700">—</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <div class="text-xs text-gray-500 font-semibold mb-2">Per-phase breakdown</div>
+            <ul id="estimatePerPhase" class="text-sm text-gray-700 space-y-1 max-h-40 overflow-y-auto pr-2 custom-scrollbar"></ul>
+          </div>
+        </div>
+
         <button id="startJourneyBtn" class="w-full bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-bold text-lg px-8 py-4 rounded-xl hover:shadow-lg hover:shadow-[#025940]/40 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3">
-          <span>Let's Begin!</span>
+          <span>Generate Guide</span>
           <i data-lucide="arrow-right" class="w-6 h-6"></i>
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Project Wizard Modal -->
+  <div id="wizardModal" class="modal-overlay hidden">
+    <div class="modal-content max-w-xl">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-3">
+          <div class="bg-gradient-to-br from-[#025940] to-[#03a678] p-2 rounded-lg">
+            <i data-lucide="settings-2" class="w-6 h-6 text-white"></i>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800">Project Wizard</h2>
+        </div>
+        <button id="closeWizard" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+          <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+        </button>
+      </div>
+      <div class="grid grid-cols-2 gap-4 mb-6">
+        <div class="col-span-2">
+          <label class="block text-sm font-semibold text-gray-700 mb-1">House Type</label>
+          <select id="wizHouseType" class="modern-select">
+            <option value="">Select House Type</option>
+            <option>Bungalow</option>
+            <option>Duplex</option>
+            <option>Terrace</option>
+            <option>Apartment</option>
+            <option>Custom</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Location</label>
+          <select id="wizLocation" class="modern-select">
+            <option value="Other">Other</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Abuja">Abuja</option>
+            <option value="Rivers">Rivers</option>
+            <option value="Ogun">Ogun</option>
+            <option value="Oyo">Oyo</option>
+            <option value="Kano">Kano</option>
+            <option value="Kaduna">Kaduna</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Bedrooms</label>
+          <input id="wizBedrooms" type="number" min="1" value="3" class="modern-input" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Floors</label>
+          <input id="wizFloors" type="number" min="1" value="1" class="modern-input" />
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Finish Level</label>
+          <select id="wizFinish" class="modern-select">
+            <option>Basic</option>
+            <option selected>Standard</option>
+            <option>Premium</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Plot Size (sqm)</label>
+          <input id="wizPlotSize" type="number" min="0" step="50" placeholder="e.g. 500" class="modern-input" />
+        </div>
+      </div>
+      
+      <!-- Estimated Cost Display -->
+      <div id="wizCostEstimate" class="mb-6 p-4 bg-gradient-to-r from-[#025940]/10 to-[#03a678]/10 rounded-xl border-2 border-[#025940]/20 hidden">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="calculator" class="w-5 h-5 text-[#025940]"></i>
+            <span class="text-sm font-semibold text-gray-700">Estimated Building Cost</span>
+          </div>
+        </div>
+        <div class="text-2xl font-bold text-[#025940] mb-1" id="wizEstimatedCost">—</div>
+        <div class="text-xs text-gray-600" id="wizCostBreakdown"></div>
+      </div>
+      
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Your Budget (₦) - Optional</label>
+        <input id="wizBudget" type="number" min="0" step="500000" placeholder="e.g. 50000000" class="modern-input" />
+        <p class="text-xs text-gray-500 mt-1">Enter your budget to compare with estimated cost</p>
+      </div>
+      
+      <button id="applyWizard" class="w-full bg-gradient-to-r from-[#025940] to-[#03a678] text-white font-semibold px-4 py-3 rounded-xl hover:shadow-lg hover:shadow-[#025940]/30 transition-all duration-300 flex items-center justify-center gap-2 mt-4">
+        <i data-lucide="check" class="w-5 h-5"></i>
+        <span>Apply</span>
+      </button>
+      <p id="wizSummary" class="text-xs text-gray-500 mt-3"></p>
+    </div>
+  </div>
+
+  <!-- Hidden input for loading project -->
+  <input id="loadProjectInput" type="file" accept="application/json" class="hidden" />
 
   <!-- Checklist Modal -->
   <div id="todoModal" class="modal-overlay">
@@ -229,6 +438,18 @@
     // initialize icons
     lucide.createIcons();
 
+    // Try loading external guide data first; fallback to default
+    async function fetchGuideData() {
+      try {
+        const res = await fetch('guide.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error('Failed to load guide.json');
+        return await res.json();
+      } catch (e) {
+        console.warn('guide.json not found or failed to load. Using embedded defaults.', e);
+        return null;
+      }
+    }
+
     // Dynamically load Chart.js safely before use
     function loadChartJs(callback) {
       const script = document.createElement('script');
@@ -245,10 +466,18 @@
       const todoModal = document.getElementById('todoModal');
       const closeModal = document.getElementById('closeModal');
       const todoList = document.getElementById('todoList');
+      const openWizard = document.getElementById('openWizard');
+      const wizardModal = document.getElementById('wizardModal');
+      const closeWizard = document.getElementById('closeWizard');
+      const applyWizard = document.getElementById('applyWizard');
+      const exportHeaderBtn = document.getElementById('exportHeaderBtn');
+      const saveProjectBtn = document.getElementById('saveProjectBtn');
+      const loadProjectBtn = document.getElementById('loadProjectBtn');
+      const loadProjectInput = document.getElementById('loadProjectInput');
 
       visitBtn.onclick = () => window.open('https://www.igethouse.ng/', '_blank');
 
-      const comprehensiveGuide = {
+      const defaultGuide = {
         preconstruction: {
           title: 'Pre-Construction Phase',
           timeline: '2-4 months',
@@ -572,11 +801,23 @@
         }
       };
 
+      // App state
+      let guide = window.__LOADED_GUIDE__ || defaultGuide;
+      let adjustments = {
+        location: 'Other',
+        bedrooms: 3,
+        floors: 1,
+        budget: null,
+        finish: 'Standard',
+        costMultiplier: 1.0,
+        durationMultiplier: 1.0
+      };
+
       let chart;
 
       function getAllTasks() {
         const tasks = [];
-        Object.values(comprehensiveGuide).forEach(phase => {
+        Object.values(guide).forEach(phase => {
           phase.steps.forEach(step => {
             tasks.push(step.title);
           });
@@ -602,8 +843,9 @@
 
       function updateChart() {
         if (!chart) return;
-        const total = getAllTasks().length;
-        const completed = Object.keys(localStorage).length;
+        const tasks = getAllTasks();
+        const total = tasks.length;
+        const completed = tasks.filter(t => localStorage.getItem(t)).length;
         const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
         
         // Update chart data with animation
@@ -676,16 +918,307 @@
       }
 
       // Store selected options for modal
-      let selectedType, selectedStyle;
+      let selectedType, selectedStyle, selectedState;
+
+      // Calculate estimated building cost based on inputs
+      function calculateEstimatedCost() {
+        const houseType = document.getElementById('wizHouseType')?.value || '';
+        const loc = document.getElementById('wizLocation')?.value || 'Other';
+        const beds = parseInt(document.getElementById('wizBedrooms')?.value || '3', 10);
+        const floors = parseInt(document.getElementById('wizFloors')?.value || '1', 10);
+        const finish = document.getElementById('wizFinish')?.value || 'Standard';
+        const plotSize = parseFloat(document.getElementById('wizPlotSize')?.value || '0');
+        
+        if (!houseType) {
+          document.getElementById('wizCostEstimate')?.classList.add('hidden');
+          return null;
+        }
+        
+        // Base cost per square meter by house type (in Naira)
+        const baseCostPerSqm = {
+          'Bungalow': 120000,
+          'Duplex': 150000,
+          'Terrace': 130000,
+          'Apartment': 140000,
+          'Custom': 135000
+        };
+        
+        // Estimate built-up area based on bedrooms and floors
+        // Average: 3-bedroom = ~150sqm, each additional bedroom = +30sqm
+        const baseArea = 120 + (beds * 30);
+        const builtUpArea = baseArea * floors;
+        
+        // Base cost calculation
+        const baseCost = builtUpArea * (baseCostPerSqm[houseType] || 130000);
+        
+        // Location multipliers
+        const locationMultipliers = {
+          'Lagos': 1.15,
+          'Abuja': 1.12,
+          'Rivers': 1.08,
+          'Ogun': 1.05,
+          'Oyo': 1.03,
+          'Kano': 1.02,
+          'Kaduna': 1.02,
+          'Other': 1.0
+        };
+        
+        // Finish level multipliers
+        const finishMultipliers = {
+          'Basic': 0.85,
+          'Standard': 1.0,
+          'Premium': 1.25
+        };
+        
+        // Floor multiplier (additional cost for multi-story)
+        const floorMultiplier = floors > 1 ? (1 + (floors - 1) * 0.12) : 1.0;
+        
+        // Plot size adjustment (affects foundation, external works)
+        const plotMultiplier = plotSize > 0 ? (1 + Math.min(plotSize / 10000, 0.15)) : 1.0;
+        
+        // Calculate final cost
+        let estimatedCost = baseCost;
+        estimatedCost *= locationMultipliers[loc] || 1.0;
+        estimatedCost *= finishMultipliers[finish] || 1.0;
+        estimatedCost *= floorMultiplier;
+        estimatedCost *= plotMultiplier;
+        
+        // Add 15% contingency
+        estimatedCost *= 1.15;
+        
+        // Create range (min 85%, max 115% of estimate)
+        const minCost = estimatedCost * 0.85;
+        const maxCost = estimatedCost * 1.15;
+        
+        return { min: minCost, max: maxCost, base: estimatedCost, area: builtUpArea };
+      }
+      
+      // Update cost estimate display
+      function updateCostEstimate() {
+        const estimate = calculateEstimatedCost();
+        const costEstimateDiv = document.getElementById('wizCostEstimate');
+        const costDisplay = document.getElementById('wizEstimatedCost');
+        const costBreakdown = document.getElementById('wizCostBreakdown');
+        const budget = parseFloat(document.getElementById('wizBudget')?.value || '0');
+        
+        if (!estimate || !costEstimateDiv) return;
+        
+        costEstimateDiv.classList.remove('hidden');
+        
+        const minFormatted = formatNaira(estimate.min);
+        const maxFormatted = formatNaira(estimate.max);
+        costDisplay.textContent = `${minFormatted} - ${maxFormatted}`;
+        
+        // Breakdown info
+        const loc = document.getElementById('wizLocation')?.value || 'Other';
+        const beds = parseInt(document.getElementById('wizBedrooms')?.value || '3', 10);
+        const floors = parseInt(document.getElementById('wizFloors')?.value || '1', 10);
+        const finish = document.getElementById('wizFinish')?.value || 'Standard';
+        
+        let breakdown = `Built-up area: ~${Math.round(estimate.area)}sqm | ${beds} bedrooms, ${floors} floor${floors > 1 ? 's' : ''} | ${finish} finish | ${loc}`;
+        
+        // Budget comparison
+        if (budget > 0) {
+          const midCost = (estimate.min + estimate.max) / 2;
+          const diff = budget - midCost;
+          const diffPercent = ((diff / midCost) * 100).toFixed(1);
+          
+          if (diff >= 0) {
+            breakdown += ` | Budget: ${formatNaira(budget)} (${diffPercent}% above estimate)`;
+            costBreakdown.className = 'text-xs text-[#025940] font-semibold';
+          } else {
+            breakdown += ` | Budget: ${formatNaira(budget)} (${Math.abs(diffPercent)}% below estimate)`;
+            costBreakdown.className = 'text-xs text-red-600 font-semibold';
+          }
+        } else {
+          costBreakdown.className = 'text-xs text-gray-600';
+        }
+        
+        costBreakdown.textContent = breakdown;
+        lucide.createIcons();
+      }
+
+      function computeAdjustments() {
+        const loc = document.getElementById('wizLocation')?.value || 'Other';
+        const beds = parseInt(document.getElementById('wizBedrooms')?.value || '3', 10);
+        const floors = parseInt(document.getElementById('wizFloors')?.value || '1', 10);
+        const budget = parseFloat(document.getElementById('wizBudget')?.value || '0');
+        const finish = document.getElementById('wizFinish')?.value || 'Standard';
+
+        let costMul = 1.0;
+        if (loc === 'Lagos') costMul *= 1.10;
+        else if (loc === 'Abuja') costMul *= 1.08;
+
+        if (floors > 1) costMul *= (1 + 0.15 * (floors - 1));
+
+        const bedAdj = 1 + 0.03 * (beds - 3);
+        costMul *= Math.max(0.85, Math.min(bedAdj, 1.25));
+
+        if (finish === 'Basic') costMul *= 0.9;
+        else if (finish === 'Premium') costMul *= 1.15;
+
+        let durMul = 1.0;
+        if (floors > 1) durMul *= (1 + 0.1 * (floors - 1));
+        if (finish === 'Premium') durMul *= 1.05;
+        durMul = Math.max(0.8, Math.min(durMul, 1.5));
+
+        adjustments = {
+          location: loc,
+          bedrooms: beds,
+          floors,
+          budget: budget > 0 ? budget : null,
+          finish,
+          costMultiplier: Number(costMul.toFixed(2)),
+          durationMultiplier: Number(durMul.toFixed(2))
+        };
+
+        const summary = document.getElementById('wizSummary');
+        if (summary) {
+          summary.textContent = `Applied: Cost x${adjustments.costMultiplier}, Duration x${adjustments.durationMultiplier}${adjustments.budget ? `, Budget ₦${adjustments.budget.toLocaleString('en-NG')}` : ''}`;
+        }
+        
+        // Update cost estimate
+        updateCostEstimate();
+      }
+
+      function parseRange(str) {
+        const match = (str || '').match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)/);
+        if (!match) return null;
+        return [parseFloat(match[1]), parseFloat(match[2])];
+      }
+
+      function formatRange([a, b], unit) {
+        return `~${Math.round(a)}-${Math.round(b)} ${unit}`;
+      }
+
+      function adjustTimeline(timeline, mul) {
+        const monthsRange = parseRange(timeline);
+        if (monthsRange && timeline.toLowerCase().includes('month')) {
+          return formatRange([monthsRange[0] * mul, monthsRange[1] * mul], 'months');
+        }
+        return timeline;
+      }
+
+      function adjustDuration(duration, mul) {
+        const lower = (duration || '').toLowerCase();
+        const r = parseRange(lower);
+        if (r && lower.includes('week')) return formatRange([r[0] * mul, r[1] * mul], 'weeks');
+        if (r && lower.includes('day')) return formatRange([r[0] * mul, r[1] * mul], 'days');
+        if (r && lower.includes('month')) return formatRange([r[0] * mul, r[1] * mul], 'months');
+        return duration;
+      }
+
+      function parseNairaRange(costStr) {
+        const cleaned = (costStr || '').replace(/[,]/g, '');
+        const match = cleaned.match(/₦\s*(\d+)\s*-\s*₦\s*(\d+)/i);
+        if (!match) return null;
+        return [parseFloat(match[1]), parseFloat(match[2])];
+      }
+
+      function parsePercentRange(costStr) {
+        const cleaned = (costStr || '').toLowerCase();
+        // Matches "5-8% of ..." or "6% of ..."
+        let m = cleaned.match(/(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*%/);
+        if (m) return [parseFloat(m[1]) / 100, parseFloat(m[2]) / 100];
+        m = cleaned.match(/(\d+(?:\.\d+)?)\s*%/);
+        if (m) {
+          const v = parseFloat(m[1]) / 100;
+          return [v, v];
+        }
+        return null;
+      }
+
+      function formatNaira(n) {
+        try {
+          return n.toLocaleString('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 });
+        } catch {
+          return '₦' + Math.round(n).toLocaleString('en-NG');
+        }
+      }
+
+      function adjustCostString(cost, mul) {
+        const range = parseNairaRange(cost);
+        if (range) {
+          const [a, b] = range;
+          const aa = a * mul, bb = b * mul;
+          return `${formatNaira(aa)} - ${formatNaira(bb)} <span class="text-xs text-gray-500">(base: ${formatNaira(a)} - ${formatNaira(b)})</span>`;
+        }
+        if ((cost || '').includes('%')) {
+          return `${cost} <span class="text-xs text-gray-500">(adjusted overall x${adjustments.costMultiplier})</span>`;
+        }
+        return cost || '';
+      }
+
+      // Compute numeric cost ranges for steps and totals (after multipliers)
+      function getStepCostRange(step) {
+        const naira = parseNairaRange(step.cost);
+        if (naira) {
+          return [naira[0] * adjustments.costMultiplier, naira[1] * adjustments.costMultiplier];
+        }
+        const pct = parsePercentRange(step.cost);
+        if (pct && adjustments.budget) {
+          const min = adjustments.budget * pct[0] * adjustments.costMultiplier;
+          const max = adjustments.budget * pct[1] * adjustments.costMultiplier;
+          return [min, max];
+        }
+        return null; // unknown
+      }
+
+      function computeTotals() {
+        const perPhase = {};
+        let totalMin = 0, totalMax = 0, unknown = 0;
+        Object.entries(guide).forEach(([key, phase]) => {
+          let pm = 0, px = 0, pu = 0;
+          phase.steps.forEach(step => {
+            const r = getStepCostRange(step);
+            if (r) {
+              pm += r[0];
+              px += r[1];
+            } else {
+              pu += 1;
+            }
+          });
+          perPhase[key] = { min: pm, max: px, unknown: pu };
+          totalMin += pm;
+          totalMax += px;
+          unknown += pu;
+        });
+        return { perPhase, totalMin, totalMax, unknown };
+      }
+
+      function exportBoqCsv() {
+        const rows = [['Phase','Step','Min (₦)','Max (₦)','Duration','Notes']];
+        Object.entries(guide).forEach(([key, phase]) => {
+          phase.steps.forEach(step => {
+            const r = getStepCostRange(step);
+            const min = r ? Math.round(r[0]) : '';
+            const max = r ? Math.round(r[1]) : '';
+            const notes = r ? '' : 'Unknown/Percentage without budget';
+            rows.push([phase.title, step.title, min, max, step.duration || '', notes]);
+          });
+        });
+        const csv = rows.map(r => r.map(val => {
+          const s = String(val);
+          return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+        }).join(',' )).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'IgetHouse_BoQ.csv';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
 
       generateGuide.addEventListener('click', () => {
         const type = document.getElementById('houseType').value;
         const style = document.getElementById('styleType').value;
+        const state = document.getElementById('stateSelect').value;
         
-        if (!type || !style) {
+        if (!type || !style || !state) {
           const alertDiv = document.createElement('div');
           alertDiv.className = 'fixed top-24 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-slide-down';
-          alertDiv.innerHTML = '<div class="flex items-center gap-2"><i data-lucide="alert-circle" class="w-5 h-5"></i><span>Please select both house type and style</span></div>';
+          alertDiv.innerHTML = '<div class="flex items-center gap-2"><i data-lucide="alert-circle" class="w-5 h-5"></i><span>Please select house type, style and state</span></div>';
           document.body.appendChild(alertDiv);
           lucide.createIcons();
           setTimeout(() => alertDiv.remove(), 3000);
@@ -695,13 +1228,96 @@
         // Store selections
         selectedType = type;
         selectedStyle = style;
+        selectedState = state;
 
         // Show journey modal
         const journeyModal = document.getElementById('journeyModal');
         document.getElementById('journeyHouseType').textContent = type;
         document.getElementById('journeyStyle').textContent = style;
+        const journeyStateEl = document.getElementById('journeyState');
+        if (journeyStateEl) journeyStateEl.textContent = state;
         journeyModal.classList.remove('hidden');
         lucide.createIcons();
+
+        // Sync wizard location (for Lagos/Abuja multipliers)
+        const wizLoc = document.getElementById('wizLocation');
+        if (wizLoc) {
+          wizLoc.value = (state === 'Lagos') ? 'Lagos' : (state.includes('Abuja') ? 'Abuja' : 'Other');
+        }
+        computeAdjustments();
+
+        // Estimate preview
+        const budgetInput = document.getElementById('estimateBudgetInput');
+        const recalcBtn = document.getElementById('recalcEstimateBtn');
+        function renderEstimate() {
+          const val = parseFloat(budgetInput?.value || '0');
+          adjustments.budget = isNaN(val) || val <= 0 ? null : val;
+          const totals = computeTotals();
+          const totalText = `${formatNaira(totals.totalMin)} - ${formatNaira(totals.totalMax)}`;
+          const totalEl = document.getElementById('estimateTotal');
+          const unkEl = document.getElementById('estimateUnknown');
+          if (totalEl) totalEl.textContent = totalText;
+          if (unkEl) unkEl.textContent = String(totals.unknown);
+          const list = document.getElementById('estimatePerPhase');
+          if (list) {
+            list.innerHTML = '';
+            Object.entries(totals.perPhase).forEach(([key, p]) => {
+              const li = document.createElement('li');
+              const title = guide[key]?.title || key;
+              li.textContent = `${title}: ${formatNaira(p.min)} - ${formatNaira(p.max)} ${p.unknown ? `(unknown: ${p.unknown})` : ''}`;
+              list.appendChild(li);
+            });
+          }
+        }
+        renderEstimate();
+        if (recalcBtn) recalcBtn.onclick = renderEstimate;
+        if (budgetInput) budgetInput.oninput = () => {
+          clearTimeout(budgetInput.__t);
+          budgetInput.__t = setTimeout(renderEstimate, 250);
+        };
+      });
+
+      // Wizard events
+      openWizard.onclick = () => {
+        wizardModal.classList.remove('hidden');
+        // Sync house type from preferences if available
+        const prefHouseType = document.getElementById('houseType')?.value;
+        const wizHouseType = document.getElementById('wizHouseType');
+        if (prefHouseType && wizHouseType && !wizHouseType.value) {
+          wizHouseType.value = prefHouseType;
+        }
+        computeAdjustments();
+        lucide.createIcons();
+      };
+      closeWizard.onclick = () => wizardModal.classList.add('hidden');
+      applyWizard.onclick = () => {
+        computeAdjustments();
+        wizardModal.classList.add('hidden');
+        // If guide already visible, refresh it
+        if (!document.getElementById('guideSection').classList.contains('hidden')) {
+          displayComprehensiveGuide();
+        }
+      };
+      
+      // Add event listeners for real-time cost estimate updates
+      ['wizHouseType', 'wizLocation', 'wizBedrooms', 'wizFloors', 'wizFinish', 'wizPlotSize', 'wizBudget'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => {
+            updateCostEstimate();
+            // Also update adjustments summary
+            const summary = document.getElementById('wizSummary');
+            if (summary && document.getElementById('wizHouseType')?.value) {
+              computeAdjustments();
+            }
+          });
+          el.addEventListener('change', () => {
+            updateCostEstimate();
+            if (document.getElementById('wizHouseType')?.value) {
+              computeAdjustments();
+            }
+          });
+        }
       });
 
       // Function to display comprehensive guide
@@ -709,8 +1325,15 @@
         // Show the guide section
         document.getElementById('guideSection').classList.remove('hidden');
         
+        const totals = computeTotals();
+        const mid = (totals.totalMin + totals.totalMax) / 2;
+        const hasBudget = typeof adjustments.budget === 'number' && adjustments.budget > 0;
+        const variance = hasBudget ? adjustments.budget - mid : null;
+        const statusColor = hasBudget ? (variance >= 0 ? 'text-[#025940]' : 'text-red-600') : 'text-gray-600';
+        const statusBg = hasBudget ? (variance >= 0 ? 'bg-[#025940]/10' : 'bg-red-50') : 'bg-gray-100';
+
         guideContainer.innerHTML = `
-          <div class="mb-8">
+          <div class="mb-8 pdf-avoid-break">
             <div class="flex items-center justify-between mb-6">
               <div class="flex items-center gap-3">
                 <div class="bg-gradient-to-br from-[#025940] to-[#03a678] p-3 rounded-xl">
@@ -721,9 +1344,46 @@
                   <p class='text-gray-500 text-sm mt-1'>${selectedStyle} Construction Plan</p>
                 </div>
               </div>
-              <div class="flex gap-2">
+              <div class="flex gap-2 items-center">
                 <span class="px-3 py-1 bg-[#025940]/10 text-[#025940] rounded-lg text-sm font-semibold">${selectedType}</span>
                 <span class="px-3 py-1 bg-[#FFA726]/10 text-[#FFA726] rounded-lg text-sm font-semibold">${selectedStyle}</span>
+                <button id="exportPdfBtn" class="hidden sm:inline-flex px-3 py-2 bg-white border-2 border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                  <i data-lucide="download" class="w-4 h-4 mr-1"></i> Save as PDF
+                </button>
+                <button id="exportCsvBtn" class="hidden md:inline-flex px-3 py-2 bg-white border-2 border-gray-200 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">
+                  <i data-lucide="file-spreadsheet" class="w-4 h-4 mr-1"></i> BoQ CSV
+                </button>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="p-3 bg-[#025940]/5 rounded-lg text-sm">
+                <span class="font-semibold text-[#025940]">Location:</span> ${adjustments.location}
+              </div>
+              <div class="p-3 bg-[#025940]/5 rounded-lg text-sm">
+                <span class="font-semibold text-[#025940]">Bedrooms/Floors:</span> ${adjustments.bedrooms} / ${adjustments.floors}
+              </div>
+              <div class="p-3 bg-[#025940]/5 rounded-lg text-sm">
+                <span class="font-semibold text-[#025940]">Adjustments:</span> Cost x${adjustments.costMultiplier}, Duration x${adjustments.durationMultiplier}
+              </div>
+            </div>
+            <div class="mt-4 bg-white border-2 border-gray-100 rounded-2xl p-6">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                <div>
+                  <div class="text-xs text-gray-500 font-semibold mb-1">Estimated Total</div>
+                  <div class="text-xl font-bold text-gray-800">${formatNaira(totals.totalMin)} - ${formatNaira(totals.totalMax)}</div>
+                  <div class="text-xs text-gray-500 mt-1">Unknown cost items: ${totals.unknown}</div>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-500 font-semibold mb-1">Budget</div>
+                  <div class="text-lg font-semibold ${statusColor}">${hasBudget ? formatNaira(adjustments.budget) : 'Not set'}</div>
+                  ${hasBudget ? `<div class="text-xs ${statusColor} ${statusBg} inline-block mt-1 px-2 py-0.5 rounded">${variance >= 0 ? 'Under' : 'Over'} by ${formatNaira(Math.abs(variance))}</div>` : ''}
+                </div>
+                <div class="text-sm text-gray-600">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#025940]"></span>
+                    Includes only items with explicit ₦ ranges. Percentage-based items use your budget when set.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -741,9 +1401,9 @@
           postconstruction: 'from-[#5E6666] to-[#4a5050]'
         };
 
-        for (let [stageKey, phase] of Object.entries(comprehensiveGuide)) {
+        for (let [stageKey, phase] of Object.entries(guide)) {
           const section = document.createElement('div');
-          section.className = 'mb-8 animate-fade-in';
+          section.className = 'mb-8 animate-fade-in pdf-avoid-break';
           
           section.innerHTML = `
             <div class="bg-gradient-to-r ${stageColors[stageKey]} p-5 rounded-t-2xl">
@@ -756,14 +1416,14 @@
                   </div>
                 </div>
                 <div class="bg-white/20 px-4 py-2 rounded-lg">
-                  <p class="text-white font-semibold text-sm"><i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>${phase.timeline}</p>
+                  <p class="text-white font-semibold text-sm"><i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>${adjustTimeline(phase.timeline, adjustments.durationMultiplier)}</p>
                 </div>
               </div>
             </div>
             <div class="bg-white border-2 border-gray-100 rounded-b-2xl p-6">
               <div class='space-y-6'>
                 ${phase.steps.map((step, i) => `
-                  <div class='border-l-4 border-${stageColors[stageKey].includes('025940') ? '[#025940]' : stageColors[stageKey].includes('FFA726') ? '[#FFA726]' : '[#5E6666]'} pl-6 py-2'>
+                  <div class='border-l-4 border-${stageColors[stageKey].includes('025940') ? '[#025940]' : stageColors[stageKey].includes('FFA726') ? '[#FFA726]' : '[#5E6666]'} pl-6 py-2 pdf-avoid-break'>
                     <div class="flex items-start gap-4 mb-3">
                       <div class="flex-shrink-0 w-8 h-8 bg-gradient-to-br ${stageColors[stageKey]} text-white rounded-full flex items-center justify-center font-bold">
                         ${i + 1}
@@ -774,11 +1434,11 @@
                         <div class="flex gap-4 text-xs text-gray-500 mb-3">
                           <span class="flex items-center gap-1">
                             <i data-lucide="timer" class="w-3.5 h-3.5"></i>
-                            <strong>Duration:</strong> ${step.duration}
+                            <strong>Duration:</strong> ${adjustDuration(step.duration, adjustments.durationMultiplier)}
                           </span>
                           <span class="flex items-center gap-1">
                             <i data-lucide="wallet" class="w-3.5 h-3.5"></i>
-                            <strong>Cost:</strong> ${step.cost}
+                            <strong>Cost:</strong> <span class="step-cost">${adjustCostString(step.cost, adjustments.costMultiplier)}</span>
                           </span>
                         </div>
                         <div class="bg-gray-50 rounded-lg p-4">
@@ -811,10 +1471,34 @@
 
         // Scroll to guide
         guideContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Export handlers
+        const exportBtn = document.getElementById('exportPdfBtn');
+        if (exportBtn) {
+          exportBtn.onclick = () => exportGuidePdf();
+        }
+        if (exportHeaderBtn) {
+          exportHeaderBtn.classList.remove('hidden');
+          exportHeaderBtn.onclick = () => exportGuidePdf();
+        }
+        const exportCsvBtn = document.getElementById('exportCsvBtn');
+        if (exportCsvBtn) {
+          exportCsvBtn.onclick = () => exportBoqCsv();
+        }
+
+        // Show save/load buttons when guide exists
+        if (saveProjectBtn) saveProjectBtn.classList.remove('hidden');
+        if (loadProjectBtn) loadProjectBtn.classList.remove('hidden');
       }
 
       // Start journey button handler
       document.getElementById('startJourneyBtn').addEventListener('click', () => {
+        // Apply any estimate budget
+        const budgetInput = document.getElementById('estimateBudgetInput');
+        if (budgetInput) {
+          const val = parseFloat(budgetInput.value || '0');
+          adjustments.budget = isNaN(val) || val <= 0 ? null : val;
+        }
         document.getElementById('journeyModal').classList.add('hidden');
         displayComprehensiveGuide();
       });
@@ -844,13 +1528,283 @@
         });
       });
 
+      // Materials calculator logic
+      function runMaterialsCalc() {
+        const wallLen = parseFloat(document.getElementById('mcWallLen').value || '0');
+        const wallHt = parseFloat(document.getElementById('mcWallHt').value || '0');
+        const blockType = document.getElementById('mcBlockType').value;
+        const blockPrice = parseFloat(document.getElementById('mcBlockPrice').value || '0');
+        const cementPrice = parseFloat(document.getElementById('mcCementPrice').value || '0');
+
+        const wallArea = wallLen * wallHt; // m2
+        const blockFaceArea = 0.225 * 0.45; // m2 typical face
+        const blocks = wallArea > 0 ? Math.ceil(wallArea / blockFaceArea) : 0;
+        const bagsPerBlock = blockType === '9' ? 1 / 70 : 1 / 90;
+        const cementBags = Math.ceil(blocks * bagsPerBlock);
+
+        const totalCost = (blocks * blockPrice) + (cementBags * cementPrice);
+
+        document.getElementById('mcBlocks').textContent = blocks.toLocaleString('en-NG');
+        document.getElementById('mcCementBags').textContent = cementBags.toLocaleString('en-NG');
+        document.getElementById('mcTotalCost').textContent = totalCost.toLocaleString('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 });
+      }
+      ['mcCalcBtn','mcWallLen','mcWallHt','mcBlockType','mcBlockPrice','mcCementPrice'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (id === 'mcCalcBtn') el.addEventListener('click', runMaterialsCalc);
+        else el.addEventListener('input', runMaterialsCalc);
+      });
+
+      // Save/Load Project
+      function getCheckedTasks() {
+        const tasks = getAllTasks();
+        return tasks.filter(t => !!localStorage.getItem(t));
+      }
+
+      function getProjectState() {
+        return {
+          version: 1,
+          createdAt: new Date().toISOString(),
+          selectedType: selectedType || document.getElementById('houseType').value || null,
+          selectedStyle: selectedStyle || document.getElementById('styleType').value || null,
+          adjustments,
+          checkedTasks: getCheckedTasks()
+        };
+      }
+
+      function downloadJson(data, filename) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      function restoreWizardInputs(adj) {
+        const loc = document.getElementById('wizLocation');
+        const beds = document.getElementById('wizBedrooms');
+        const floors = document.getElementById('wizFloors');
+        const budget = document.getElementById('wizBudget');
+        const finish = document.getElementById('wizFinish');
+        if (loc && adj.location) loc.value = adj.location;
+        if (beds && adj.bedrooms) beds.value = adj.bedrooms;
+        if (floors && adj.floors) floors.value = adj.floors;
+        if (budget && typeof adj.budget === 'number') budget.value = adj.budget;
+        if (finish && adj.finish) finish.value = adj.finish;
+        computeAdjustments();
+      }
+
+      function applyProjectState(state) {
+        if (!state) return;
+        if (state.adjustments) {
+          adjustments = state.adjustments;
+          restoreWizardInputs(adjustments);
+        }
+        if (state.selectedType) {
+          const houseSel = document.getElementById('houseType');
+          if (houseSel) houseSel.value = state.selectedType;
+          selectedType = state.selectedType;
+        }
+        if (state.selectedStyle) {
+          const styleSel = document.getElementById('styleType');
+          if (styleSel) styleSel.value = state.selectedStyle;
+          selectedStyle = state.selectedStyle;
+        }
+        // Reset tasks, then apply
+        getAllTasks().forEach(task => localStorage.removeItem(task));
+        if (Array.isArray(state.checkedTasks)) {
+          state.checkedTasks.forEach(task => localStorage.setItem(task, 'done'));
+        }
+        updateTodoList();
+        updateChart();
+        // If we have selections, ensure guide is visible
+        if (selectedType && selectedStyle) {
+          displayComprehensiveGuide();
+        }
+      }
+
+      if (saveProjectBtn) {
+        saveProjectBtn.onclick = () => {
+          const data = getProjectState();
+          const namePart = data.selectedType && data.selectedStyle ? `${data.selectedType}_${data.selectedStyle}` : 'Project';
+          downloadJson(data, `IgetHouse_${namePart}.json`);
+        };
+      }
+      if (loadProjectBtn && loadProjectInput) {
+        loadProjectBtn.onclick = () => loadProjectInput.click();
+        loadProjectInput.onchange = async (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          try {
+            const text = await file.text();
+            const json = JSON.parse(text);
+            applyProjectState(json);
+          } catch (err) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'fixed top-24 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-slide-down';
+            alertDiv.innerHTML = '<div class="flex items-center gap-2"><i data-lucide="alert-circle" class="w-5 h-5"></i><span>Failed to load project file</span></div>';
+            document.body.appendChild(alertDiv);
+            lucide.createIcons();
+            setTimeout(() => alertDiv.remove(), 3000);
+          } finally {
+            loadProjectInput.value = '';
+          }
+        };
+      }
+
+      // Export PDF using html2pdf - simple and reliable
+      async function exportGuidePdf() {
+        const target = document.getElementById('guideContainer');
+        if (!target || target.children.length === 0) {
+          alert('Please generate a guide before saving as PDF');
+          return;
+        }
+        
+        setPdfButtonsBusy(true);
+        showPdfProgress('Generating PDF…');
+        
+        // Wait for html2pdf to be available
+        let attempts = 0;
+        while (!window.html2pdf && attempts < 50) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          attempts++;
+        }
+        
+        if (!window.html2pdf) {
+          // Try loading it manually
+          const script = document.createElement('script');
+          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+          document.head.appendChild(script);
+          await new Promise((resolve, reject) => {
+            script.onload = resolve;
+            script.onerror = reject;
+            setTimeout(reject, 5000);
+          }).catch(() => {
+            hidePdfProgress();
+            setPdfButtonsBusy(false);
+            alert('Failed to load PDF library. Please check your internet connection.');
+            return;
+          });
+        }
+        
+        // Ensure icons are rendered
+        lucide.createIcons();
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Save and restore styles
+        const origPadding = target.style.padding;
+        const origMargin = target.style.margin;
+        const origRadius = target.style.borderRadius;
+        const origBg = target.style.backgroundColor;
+        const origWidth = target.style.width;
+        const origMaxWidth = target.style.maxWidth;
+        const origTextAlign = target.style.textAlign;
+        
+        // Ensure full content is visible and centered
+        target.style.padding = '20px';
+        target.style.margin = '0 auto';
+        target.style.borderRadius = '0';
+        target.style.backgroundColor = '#ffffff';
+        target.style.width = '100%';
+        target.style.maxWidth = '100%';
+        target.style.textAlign = 'left';
+        target.style.boxSizing = 'border-box';
+        
+        // Wait for styles to apply
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        try {
+          const opt = {
+            margin: [0.5, 0.5, 0.5, 0.5],
+            filename: 'IgetHouse_Plan.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+              scale: 2, 
+              useCORS: true,
+              logging: false,
+              allowTaint: true,
+              backgroundColor: '#ffffff',
+              removeContainer: true
+            },
+            jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'], avoid: '.pdf-avoid-break' }
+          };
+          
+          await window.html2pdf().set(opt).from(target).save();
+          showPdfProgress('Saved!');
+          setTimeout(() => hidePdfProgress(), 1500);
+        } catch (err) {
+          console.error('PDF error:', err);
+          alert('Failed to generate PDF. Please try again.');
+          hidePdfProgress();
+        } finally {
+          target.style.padding = origPadding || '';
+          target.style.margin = origMargin || '';
+          target.style.borderRadius = origRadius || '';
+          target.style.backgroundColor = origBg || '';
+          target.style.width = origWidth || '';
+          target.style.maxWidth = origMaxWidth || '';
+          target.style.textAlign = origTextAlign || '';
+          setPdfButtonsBusy(false);
+        }
+      }
+
+      // PDF progress helpers
+      function getPdfButtons() {
+        return [document.getElementById('exportPdfBtn'), document.getElementById('exportHeaderBtn')].filter(Boolean);
+      }
+      function setPdfButtonsBusy(busy) {
+        getPdfButtons().forEach(btn => {
+          if (!btn) return;
+          if (busy) {
+            if (!btn.dataset.prevLabel) btn.dataset.prevLabel = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 mr-1 animate-spin"></i> Saving…';
+            btn.classList.add('is-busy');
+            btn.setAttribute('disabled', 'true');
+          } else {
+            if (btn.dataset.prevLabel) {
+              btn.innerHTML = btn.dataset.prevLabel;
+              delete btn.dataset.prevLabel;
+            }
+            btn.classList.remove('is-busy');
+            btn.removeAttribute('disabled');
+          }
+        });
+        lucide.createIcons();
+      }
+      function showPdfProgress(message) {
+        let el = document.getElementById('pdfProgress');
+        if (!el) {
+          el = document.createElement('div');
+          el.id = 'pdfProgress';
+          el.className = 'fixed top-24 left-1/2 -translate-x-1/2 bg-[#025940] text-white px-6 py-3 rounded-xl shadow-lg z-50';
+          document.body.appendChild(el);
+        }
+        el.textContent = message;
+      }
+      function hidePdfProgress() {
+        const el = document.getElementById('pdfProgress');
+        if (el) el.remove();
+      }
+
       updateTodoList();
       initChart();
     }
 
-    // Load Chart.js then run app
-    loadChartJs(initApp);
+    // Load guide.json first, then Chart.js, then init
+    (async () => {
+      const loaded = await fetchGuideData();
+      if (loaded) {
+        window.__LOADED_GUIDE__ = loaded;
+      }
+      loadChartJs(initApp);
+    })();
   </script>
+
+  <!-- PDF Export library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
     /* Font Family */
@@ -1039,6 +1993,8 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s ease;
+      padding: 1rem; /* ensure spacing on small screens */
+      overflow-y: auto; /* allow scroll if content taller than viewport */
     }
 
     .modal-overlay:not(.hidden) {
@@ -1055,10 +2011,65 @@
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       transform: scale(0.95);
       transition: transform 0.3s ease;
+      max-height: calc(100vh - 2rem); /* viewport-constrained */
+      overflow-y: auto; /* scroll inside modal when needed */
     }
 
     .modal-overlay:not(.hidden) .modal-content {
       transform: scale(1);
+    }
+    /* disabled/busy button style */
+    .is-busy {
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    /* PDF formatting - ensure all content is visible and properly formatted */
+    .pdf-avoid-break {
+      break-inside: avoid;
+      page-break-inside: avoid;
+      -webkit-region-break-inside: avoid;
+    }
+    
+    /* Ensure guide container has proper dimensions for PDF */
+    #guideContainer {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+    
+    /* Improve print rendering for colors */
+    @media print {
+      body { 
+        -webkit-print-color-adjust: exact; 
+        print-color-adjust: exact; 
+      }
+      .pdf-avoid-break { 
+        break-inside: avoid; 
+        page-break-inside: avoid; 
+        -webkit-region-break-inside: avoid;
+      }
+      /* Ensure all content is visible and properly aligned */
+      #guideContainer {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 20px !important;
+        box-sizing: border-box !important;
+      }
+      * {
+        max-width: 100% !important;
+        overflow: visible !important;
+      }
+    }
+    /* larger screens: account for bigger overlay padding */
+    @media (min-width: 640px) {
+      .modal-overlay {
+        padding: 2rem;
+      }
+      .modal-content {
+        max-height: calc(100vh - 4rem);
+      }
     }
 
     /* Custom Scrollbar */
